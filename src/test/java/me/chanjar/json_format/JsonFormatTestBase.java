@@ -1,4 +1,4 @@
-package me.chanjar.no_json_format;
+package me.chanjar.json_format;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
-import java.util.Date;
-
 import static org.testng.Assert.assertEquals;
 
-public class NoJsonFormatTestBase extends AbstractTestNGSpringContextTests {
+public class JsonFormatTestBase extends AbstractTestNGSpringContextTests {
 
   @Autowired
   private ObjectMapper objectMapper;
@@ -20,35 +18,38 @@ public class NoJsonFormatTestBase extends AbstractTestNGSpringContextTests {
   public void test() throws Exception {
     Foo sampleFoo = new Foo(new LocalDateTime(2017, 1, 1, 1, 1, 1).toDate());
 
-    doTest(sampleFoo.getUtilDate(), Date.class);
+    String json = objectMapper.writeValueAsString(sampleFoo);
+    System.out.println("Serialize " + Foo.class.getName() + ":");
+    System.out.println(json);
 
-    doTest(sampleFoo.getJava8LocalDate(), java.time.LocalDate.class);
-    doTest(sampleFoo.getJava8LocalTime(), java.time.LocalTime.class);
-    doTest(sampleFoo.getJava8LocalDateTime(), java.time.LocalDateTime.class);
-    doTest(sampleFoo.getJava8ZonedDateTime(), java.time.ZonedDateTime.class);
+    Foo result = objectMapper.readValue(json, Foo.class);
 
-    doTest(sampleFoo.getJodaLocalDate(), org.joda.time.LocalDate.class);
-    doTest(sampleFoo.getJodaLocalTime(), org.joda.time.LocalTime.class);
-    doTest(sampleFoo.getJodaLocalDateTime(), org.joda.time.LocalDateTime.class);
-    doTest(sampleFoo.getJodaDateTime(), org.joda.time.DateTime.class);
+
+    doAssertEquals(result.getUtilDate(), sampleFoo.getUtilDate());
+    doAssertEquals(result.getJava8LocalDate(), sampleFoo.getJava8LocalDate());
+    doAssertEquals(result.getJava8LocalTime(), sampleFoo.getJava8LocalTime());
+    doAssertEquals(result.getJava8LocalDateTime(), sampleFoo.getJava8LocalDateTime());
+    doAssertEquals(result.getJava8ZonedDateTime(), sampleFoo.getJava8ZonedDateTime());
+    doAssertEquals(result.getJodaLocalDate(), sampleFoo.getJodaLocalDate());
+    doAssertEquals(result.getJodaLocalTime(), sampleFoo.getJodaLocalTime());
+    doAssertEquals(result.getJodaLocalDateTime(), sampleFoo.getJodaLocalDateTime());
+    doAssertEquals(result.getJodaDateTime(), sampleFoo.getJodaDateTime());
+
 
   }
 
-  private <T> void doTest(T value, Class<T> clazz) throws Exception {
-
-    String json = objectMapper.writeValueAsString(value);
-    System.out.println("Serialize " + clazz.getName() + ":");
-    System.out.println(json);
+  private void doAssertEquals(Object acutal, Object expected) throws Exception {
 
     try {
-      T result = objectMapper.readValue(json, clazz);
-      assertEquals(result, value);
-      System.out.println("Deserialize success");
+      assertEquals(acutal, expected);
+      System.out.println("Deserialize success: " + acutal.getClass().getName());
     } catch (AssertionError | Exception e) {
-      System.out.println("Deserialize failed");
+      System.out.println("Deserialize failed: " + acutal.getClass().getName());
       System.out.println(ExceptionUtils.getStackTrace(e));
     }
     System.out.println();
+
+
   }
 
   @Autowired

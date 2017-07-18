@@ -1,6 +1,7 @@
 package me.chanjar.json_format;
 
-import org.joda.time.DateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.joda.time.DateTimeZone;
 
 import java.time.*;
 import java.util.Date;
@@ -10,22 +11,31 @@ import java.util.Date;
  */
 public class Foo {
 
+  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private Date utilDate;
 
+  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private LocalDateTime java8LocalDateTime;
 
+  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss VV")
   private ZonedDateTime java8ZonedDateTime;
 
+  @JsonFormat(pattern = "yyyy-MMM-dd")
   private LocalDate java8LocalDate;
 
+  @JsonFormat(pattern = "HH:mm:ss")
   private LocalTime java8LocalTime;
 
+  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private org.joda.time.LocalDateTime jodaLocalDateTime;
 
-  private DateTime jodaDateTime;
+  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ssZ")
+  private org.joda.time.DateTime jodaDateTime;
 
+  @JsonFormat(pattern = "yyyy-MMM-dd")
   private org.joda.time.LocalDate jodaLocalDate;
 
+  @JsonFormat(pattern = "HH:mm:ss")
   private org.joda.time.LocalTime jodaLocalTime;
 
   public Foo() {
@@ -43,7 +53,7 @@ public class Foo {
     this.jodaLocalDateTime = org.joda.time.LocalDateTime.fromDateFields(date);
     this.jodaLocalDate = jodaLocalDateTime.toLocalDate();
     this.jodaLocalTime = jodaLocalDateTime.toLocalTime();
-    this.jodaDateTime = jodaLocalDateTime.toDateTime();
+    this.jodaDateTime = jodaLocalDateTime.toDateTime(DateTimeZone.forID(ZoneId.systemDefault().getId()));
   }
 
   public void setJava8LocalDateTime(LocalDateTime java8LocalDateTime) {
@@ -70,7 +80,7 @@ public class Foo {
     return jodaLocalDateTime;
   }
 
-  public DateTime getJodaDateTime() {
+  public org.joda.time.DateTime getJodaDateTime() {
     return jodaDateTime;
   }
 
@@ -98,7 +108,7 @@ public class Foo {
     this.java8LocalTime = java8LocalTime;
   }
 
-  public void setJodaDateTime(DateTime jodaDateTime) {
+  public void setJodaDateTime(org.joda.time.DateTime jodaDateTime) {
     this.jodaDateTime = jodaDateTime;
   }
 
@@ -117,4 +127,5 @@ public class Foo {
   public void setJodaLocalTime(org.joda.time.LocalTime jodaLocalTime) {
     this.jodaLocalTime = jodaLocalTime;
   }
+
 }
