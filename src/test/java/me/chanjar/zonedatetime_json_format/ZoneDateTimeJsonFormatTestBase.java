@@ -35,6 +35,7 @@ public class ZoneDateTimeJsonFormatTestBase extends AbstractTestNGSpringContextT
         new Object[] { new ZonedDateTimeEntity3(date) },
         new Object[] { new ZonedDateTimeEntity4(date) },
         new Object[] { new ZonedDateTimeEntity5(date) },
+        new Object[] { new ZonedDateTimeEntity6(date) },
     };
   }
 
