@@ -25,15 +25,12 @@
 |``java.time.LocalDate``           |[2017,1,1]              |Ok                 |
 |``java.time.LocalTime``           |[1,1,1]                 |Ok                 |
 |``java.time.LocalDateTime``       |1483203661000           |Ok                 |
-|``java.time.ZonedDateTime``       |1483203661.000000000    |Failed             |
+|``java.time.ZonedDateTime``       |1483203661.000000000    |expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]             |
 |``org.joda.time.LocalDate``       |[2017,1,1]              |Ok                 |
 |``org.joda.time.LocalTime``       |[1,1,1,0]               |Ok                 |
 |``org.joda.time.LocalDateTime``   |[2017,1,1,1,1,1,0]      |Ok                 |
-|``org.joda.time.DateTime``        |1483203661000           |Failed             |
+|``org.joda.time.DateTime``        |1483203661000           |expected [2017-01-01T01:01:01.000+08:00] but found [2016-12-31T17:01:01.000Z]             |
 
-``java.time.ZonedDateTime`` failed message: `expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]`
-
-``org.joda.time.DateTime`` fail message: `expected [2017-01-01T01:01:01.000+08:00] but found [2016-12-31T17:01:01.000Z]`
 
 在这个例子里我们可以看到两个问题：
 
@@ -54,15 +51,11 @@
 |``java.time.LocalDate``           |"2017-01-01"                    |Ok                 |
 |``java.time.LocalTime``           |"01:01:01"                      |Ok                 |
 |``java.time.LocalDateTime``       |"2017-01-01T01:01:01"           |Ok                 |
-|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |Failed             |
+|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]             |
 |``org.joda.time.LocalDate``       |"2017-01-01"                    |Ok                 |
 |``org.joda.time.LocalTime``       |"01:01:01.000"                  |Ok                 |
 |``org.joda.time.LocalDateTime``   |"2017-01-01T01:01:01.000"       |Ok                 |
-|``org.joda.time.DateTime``        |"2016-12-31 17:01:01"           |Failed             |
-
-``java.time.ZonedDateTime`` failed message: `expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]`
-
-``org.joda.time.DateTime`` fail message: `Invalid format: "2016-12-31 17:01:01" is malformed at " 17:01:01"`
+|``org.joda.time.DateTime``        |"2016-12-31 17:01:01"           |Invalid format: "2016-12-31 17:01:01" is malformed at " 17:01:01"             |
 
 
 在这个例子里我们可以看到一个现象，就是输出结果都是human-readable了，但是却发现了更多问题：
@@ -87,15 +80,12 @@
 |``java.time.LocalDate``           |"2017-01-01"                    |Ok                 |
 |``java.time.LocalTime``           |"01:01:01"                      |Ok                 |
 |``java.time.LocalDateTime``       |"2017-01-01T01:01:01"           |Ok                 |
-|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |Failed             |
+|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]             |
 |``org.joda.time.LocalDate``       |"2017-01-01"                    |Ok                 |
 |``org.joda.time.LocalTime``       |"01:01:01.000"                  |Ok                 |
 |``org.joda.time.LocalDateTime``   |"2017-01-01T01:01:01.000"       |Ok                 |
-|``org.joda.time.DateTime``        |"2016-12-31 17:01:01"           |Failed             |
+|``org.joda.time.DateTime``        |"2016-12-31 17:01:01"           |Invalid format: "2016-12-31 17:01:01" is malformed at " 17:01:01"             |
 
-``java.time.ZonedDateTime`` failed message: `expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]`
-
-``org.joda.time.DateTime`` fail message: `Invalid format: "2016-12-31 17:01:01" is malformed at " 17:01:01"`
 
 在本例和例子2的结果是一样的。
 
@@ -149,9 +139,8 @@
 |``org.joda.time.LocalDate``       |"2017-01-01"                                   |Ok                 |
 |``org.joda.time.LocalTime``       |"01:01:01.000"                                 |Ok                 |
 |``org.joda.time.LocalDateTime``   |"2017-01-01T01:01:01.000"                      |Ok                 |
-|``org.joda.time.DateTime``        |"2017-01-01 01:01:01[Asia/Shanghai]"           |Failed             |
+|``org.joda.time.DateTime``        |"2017-01-01 01:01:01[Asia/Shanghai]"           |Invalid format: "2017-01-01 01:01:01" is malformed at " 01:01:01"             |
 
-``org.joda.time.DateTime`` fail message: `Invalid format: "2017-01-01 01:01:01" is malformed at " 01:01:01"`
 
 在这个例子里我们可以发现：
 
@@ -182,9 +171,8 @@
 |``org.joda.time.LocalDate``       |"2017-01-01"                                   |Ok                 |
 |``org.joda.time.LocalTime``       |"01:01:01.000"                                 |Ok                 |
 |``org.joda.time.LocalDateTime``   |"2017-01-01T01:01:01.000"                      |Ok                 |
-|``org.joda.time.DateTime``        |"2017-01-01 01:01:01[Asia/Shanghai]"           |Failed             |
+|``org.joda.time.DateTime``        |"2017-01-01 01:01:01[Asia/Shanghai]"           |Invalid format: "2017-01-01 01:01:01" is malformed at " 01:01:01"             |
 
-``org.joda.time.DateTime`` fail message: `Invalid format: "2017-01-01 01:01:01" is malformed at " 01:01:01"`
 
 结果和例子5一模一样。
 
@@ -202,15 +190,11 @@
 |``java.time.LocalDate``           |"2017-01-01"                    |Ok                 |
 |``java.time.LocalTime``           |"01:01:01"                      |Ok                 |
 |``java.time.LocalDateTime``       |"2017-01-01T01:01:01"           |Ok                 |
-|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |Failed             |
+|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]             |
 |``org.joda.time.LocalDate``       |"2017-01-01"                    |Ok                 |
 |``org.joda.time.LocalTime``       |"01:01:01.000"                  |Ok                 |
 |``org.joda.time.LocalDateTime``   |"2017-01-01T01:01:01.000"       |Ok                 |
-|``org.joda.time.DateTime``        |"2016-十二月-31 17:01:01"        |Failed             |
-
-``java.time.ZonedDateTime`` failed message: `expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]`
-
-``org.joda.time.DateTime`` fail message: `Invalid format: "2016-十二月-31 17:01:01" is malformed at "-十二月-31 17:01:01"`
+|``org.joda.time.DateTime``        |"2016-十二月-31 17:01:01"        |Invalid format: "2016-十二月-31 17:01:01" is malformed at "-十二月-31 17:01:01"             |
 
 
 在这个例子里我们发现：
@@ -234,15 +218,12 @@
 |``java.time.LocalDate``           |"2017-01-01"                    |Ok                 |
 |``java.time.LocalTime``           |"01:01:01"                      |Ok                 |
 |``java.time.LocalDateTime``       |"2017-01-01T01:01:01"           |Ok                 |
-|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |Failed             |
+|``java.time.ZonedDateTime``       |"2017-01-01T01:01:01+08:00"     |expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]             |
 |``org.joda.time.LocalDate``       |"2017-01-01"                    |Ok                 |
 |``org.joda.time.LocalTime``       |"01:01:01.000"                  |Ok                 |
 |``org.joda.time.LocalDateTime``   |"2017-01-01T01:01:01.000"       |Ok                 |
-|``org.joda.time.DateTime``        |"2016-十二月-31T17:01:01"        |Failed             |
+|``org.joda.time.DateTime``        |"2016-十二月-31T17:01:01"        |Invalid format: "2016-十二月-31T17:01:01" is malformed at "-十二月-31T17:01:01"             |
 
-``java.time.ZonedDateTime`` failed message: `expected [2017-01-01T01:01:01+08:00[Asia/Shanghai]] but found [2016-12-31T17:01:01Z[UTC]]`
-
-``org.joda.time.DateTime`` fail message: `Invalid format: "2016-十二月-31T17:01:01" is malformed at "-十二月-31T17:01:01"`
 
 在这个例子里我们发现：
 
