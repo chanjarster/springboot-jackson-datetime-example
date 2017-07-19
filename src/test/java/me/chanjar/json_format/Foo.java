@@ -17,7 +17,10 @@ public class Foo {
   @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private LocalDateTime java8LocalDateTime;
 
-  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss VV")
+//  @JsonFormat(
+//      with = { JsonFormat.Feature.WRITE_DATES_WITH_ZONE_ID },
+//      without = { JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE }
+//  )
   private ZonedDateTime java8ZonedDateTime;
 
   @JsonFormat(pattern = "yyyy-MMM-dd")
@@ -29,7 +32,6 @@ public class Foo {
   @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private org.joda.time.LocalDateTime jodaLocalDateTime;
 
-  @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ssZ")
   private org.joda.time.DateTime jodaDateTime;
 
   @JsonFormat(pattern = "yyyy-MMM-dd")
