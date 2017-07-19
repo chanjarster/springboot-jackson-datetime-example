@@ -1,9 +1,11 @@
 package me.chanjar.json_format;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.joda.time.DateTimeZone;
 
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 /**
@@ -17,12 +19,6 @@ public class Foo {
   @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private LocalDateTime java8LocalDateTime;
 
-//  @JsonFormat(
-//      with = { JsonFormat.Feature.WRITE_DATES_WITH_ZONE_ID },
-//      without = { JsonFormat.Feature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE }
-//  )
-  private ZonedDateTime java8ZonedDateTime;
-
   @JsonFormat(pattern = "yyyy-MMM-dd")
   private LocalDate java8LocalDate;
 
@@ -31,8 +27,6 @@ public class Foo {
 
   @JsonFormat(pattern = "yyyy-MMM-dd HH:mm:ss")
   private org.joda.time.LocalDateTime jodaLocalDateTime;
-
-  private org.joda.time.DateTime jodaDateTime;
 
   @JsonFormat(pattern = "yyyy-MMM-dd")
   private org.joda.time.LocalDate jodaLocalDate;
@@ -50,12 +44,10 @@ public class Foo {
     this.java8LocalDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
     this.java8LocalDate = java8LocalDateTime.toLocalDate();
     this.java8LocalTime = java8LocalDateTime.toLocalTime();
-    this.java8ZonedDateTime = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
 
     this.jodaLocalDateTime = org.joda.time.LocalDateTime.fromDateFields(date);
     this.jodaLocalDate = jodaLocalDateTime.toLocalDate();
     this.jodaLocalTime = jodaLocalDateTime.toLocalTime();
-    this.jodaDateTime = jodaLocalDateTime.toDateTime(DateTimeZone.forID(ZoneId.systemDefault().getId()));
   }
 
   public void setJava8LocalDateTime(LocalDateTime java8LocalDateTime) {
@@ -82,18 +74,6 @@ public class Foo {
     return jodaLocalDateTime;
   }
 
-  public org.joda.time.DateTime getJodaDateTime() {
-    return jodaDateTime;
-  }
-
-  public ZonedDateTime getJava8ZonedDateTime() {
-    return java8ZonedDateTime;
-  }
-
-  public void setJava8ZonedDateTime(ZonedDateTime java8ZonedDateTime) {
-    this.java8ZonedDateTime = java8ZonedDateTime;
-  }
-
   public LocalDate getJava8LocalDate() {
     return java8LocalDate;
   }
@@ -108,10 +88,6 @@ public class Foo {
 
   public void setJava8LocalTime(LocalTime java8LocalTime) {
     this.java8LocalTime = java8LocalTime;
-  }
-
-  public void setJodaDateTime(org.joda.time.DateTime jodaDateTime) {
-    this.jodaDateTime = jodaDateTime;
   }
 
   public org.joda.time.LocalDate getJodaLocalDate() {

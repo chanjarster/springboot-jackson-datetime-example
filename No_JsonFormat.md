@@ -1,4 +1,4 @@
-# 使用Spring Boot全局配置Jackson的例子
+# 不使用@JsonFormat序列化、反序列化日期时间类型
 
 下面所有例子：
 
@@ -13,7 +13,7 @@
   1. Joda的``org.joda.time.LocalDateTime``
   1. Joda的``org.joda.time.DateTime``
 * 拿序列化结果反序列化，查看是否结果正确
-* 没有使用``@JsonFormat``
+* 没有使用``@JsonFormat``，也就是意味着使用的是全局配置
 
 ## 例子1: 全默认配置
 

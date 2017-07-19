@@ -24,17 +24,13 @@ public class JsonFormatTestBase extends AbstractTestNGSpringContextTests {
 
     Foo result = objectMapper.readValue(json, Foo.class);
 
-
     doAssertEquals(result.getUtilDate(), sampleFoo.getUtilDate());
     doAssertEquals(result.getJava8LocalDate(), sampleFoo.getJava8LocalDate());
     doAssertEquals(result.getJava8LocalTime(), sampleFoo.getJava8LocalTime());
     doAssertEquals(result.getJava8LocalDateTime(), sampleFoo.getJava8LocalDateTime());
-    doAssertEquals(result.getJava8ZonedDateTime(), sampleFoo.getJava8ZonedDateTime());
     doAssertEquals(result.getJodaLocalDate(), sampleFoo.getJodaLocalDate());
     doAssertEquals(result.getJodaLocalTime(), sampleFoo.getJodaLocalTime());
     doAssertEquals(result.getJodaLocalDateTime(), sampleFoo.getJodaLocalDateTime());
-    doAssertEquals(result.getJodaDateTime(), sampleFoo.getJodaDateTime());
-
 
   }
 
@@ -48,7 +44,6 @@ public class JsonFormatTestBase extends AbstractTestNGSpringContextTests {
       System.out.println(ExceptionUtils.getStackTrace(e));
     }
     System.out.println();
-
 
   }
 

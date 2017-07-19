@@ -1,4 +1,4 @@
-# 携带时区信息的日期时间类型的序列化与反序列化
+# 不使用@JsonFormat序列化、反序列化携带时区信息的日期时间类型
 
 在前一章的例子里，有两个携带时区信息的类型``java.time.ZonedDateTime``和``org.joda.time.DateTime``，他们的序列化结果会直接影响到是否能够正确的反序列化。
 
@@ -103,3 +103,4 @@
 [src-ZoneDateTimeType1Test]: src/test/java/me/chanjar/zonedatetime/ZoneDateTimeType1Test.java
 [src-ZoneDateTimeType2Test]: src/test/java/me/chanjar/zonedatetime/ZoneDateTimeType2Test.java
 [src-ZoneDateTimeType3Test]: src/test/java/me/chanjar/zonedatetime/ZoneDateTimeType3Test.java
+[github-jackson-databind-issue204]: https://github.com/FasterXML/jackson-databind/issues/204
